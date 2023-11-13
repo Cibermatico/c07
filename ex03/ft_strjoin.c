@@ -43,32 +43,31 @@ char *ft_strjoin(int size, char **strs, char *sep)
 	{
 		while (strs[i][j] != '\0')
 		{		
-			while(i > 0 && (t < sep_len))
-			{				
-				result[k] = sep[t];
-				t++;
-				k++; //il problema e' qui k++
-			}
 			result[k] = strs[i][j];
 			j++;
 			k++;
-			t = 0;
+			t = 0;			
 		}
+		while( (t < sep_len))
+			{				
+				result[k] = sep[t];     //carica il separatore 
+				t++;
+				k++; 
+			}
 		j = 0;
 		i++;
 	}
-	result[k+1] = '\0';
+	result[k] = '\0';
 	return result;
 }
 
 int main(void)
 {
-	char *separator = "!!!";
-	char *matrice[] = {"123", "123", "123", "abc"};
-	char *array = ft_strjoin(4, matrice,separator);
+	char *separator = " ";
+	char *matrice[] = {"Risolto", "sto", "cazzo", "di", "strjoin!"};
+	char *array = ft_strjoin(5, matrice,separator);
 	
 	printf("%s",array);	
 
 	return 0;
 }
-
