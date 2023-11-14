@@ -33,21 +33,24 @@ int ft_total_lenght(int size, char **ptr)
 	return total_lenght;
 } 
 
-char *ft_strjoin(int size, char **strs, char *sep)
+void silly_function(int *a, int *b, int *c, int *d)
 {
-	int sep_len = 0;
-	int first_str_len = 0;
-	int t = 0;
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	
-	int total_lenght;
+	*a = 0;
+	*b = 0;
+	*c = 0;
+	*d = 0;
+}
+
+char *ft_strjoin(int size, char **strs, char *sep)
+{	
+	int t;
+	int i;
+	int j;
+	int k;
 	char *result;
 
-	sep_len = ft_strlen(sep);	
-	result = (char *)malloc((ft_total_lenght(size,strs)) * sizeof(char) + (sep_len * (size - 1)) * sizeof(char));
-	i = 0;
+	silly_function(&i,&j,&t,&k);
+	result = (char *)malloc((ft_total_lenght(size,strs)) * sizeof(char) + (ft_strlen(sep) * (size - 1)) * sizeof(char));	
 	while (i < size)
 	{
 		while (strs[i][j] != '\0')
@@ -57,7 +60,7 @@ char *ft_strjoin(int size, char **strs, char *sep)
 			k++;
 			t = 0;			
 		}
-		while( (t < sep_len) && i < (size - 1))
+		while( (t < ft_strlen(sep)) && i < (size - 1))
 			{				
 				result[k] = sep[t];     //carica il separatore 
 				t++;
@@ -72,9 +75,9 @@ char *ft_strjoin(int size, char **strs, char *sep)
 
 int main(void)
 {
-	char *separator = "-->";
-	char *matrice[] = {"Risolto", "sto", "cazzo", "di", "strjoin!"};
-	char *array = ft_strjoin(5, matrice,separator);
+	char *separator = "--->";
+	char *matrice[] = {"Norminette", "ti", "odio"};
+	char *array = ft_strjoin(3, matrice,separator);
 	
 	printf("%s",array);	
 
