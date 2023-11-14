@@ -5,33 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsquarci <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 17:11:09 by lsquarci          #+#    #+#             */
-/*   Updated: 2023/11/09 17:13:40 by lsquarci         ###   ########.fr       */
+/*   Created: 2023/11/12 16:00:39 by lsquarci          #+#    #+#             */
+/*   Updated: 2023/11/12 18:43:14 by lsquarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
-int *ft_range(int min, int max)
+int	*ft_range(int min, int max)
 {
-	int *result;
-	int delta;
-	
-	delta = max - min;
-	result = (int*)malloc(delta * sizeof(int));
-	delta = 0;
+	int	*result;
+	int	dim;
 
-	if (min > max)
-		{	
-			return (0);
-		}
-	
-	while (max > min)
+	if (max <= min)
+		return (NULL);
+	dim = max - min;
+	result = (int *)malloc((dim) * sizeof(int));
+	dim = 0;
+	while (min < max)
 	{
-		result[delta] = min ;
-		min ++;	
-		delta++;			
+		result[dim] = min;
+		dim++;
+		min++;
 	}
-		return (result);
+	return (result);
 }
