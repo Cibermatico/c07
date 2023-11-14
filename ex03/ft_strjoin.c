@@ -40,46 +40,60 @@ void silly_function(int *a, int *b, int *c, int *d)
 	*c = 0;
 	*d = 0;
 }
-
-char *ft_strjoin(int size, char **strs, char *sep)
+void main_function(int size, char **matrix, char *s, char *output)
 {	
 	int t;
 	int i;
 	int j;
 	int k;
-	char *result;
-
+	
 	silly_function(&i,&j,&t,&k);
-	result = (char *)malloc((ft_total_lenght(size,strs)) * sizeof(char) + (ft_strlen(sep) * (size - 1)) * sizeof(char));	
 	while (i < size)
 	{
-		while (strs[i][j] != '\0')
+		while (matrix[i][j] != '\0')
 		{		
-			result[k] = strs[i][j];
+			output[k] = matrix[i][j];
 			j++;
-			k++;
-			t = 0;			
+			k++;						
 		}
-		while( (t < ft_strlen(sep)) && i < (size - 1))
+		t = 0;
+		while( (t < ft_strlen(s)) && i < (size - 1))
 			{				
-				result[k] = sep[t];     //carica il separatore 
+				output[k] = s[t];
 				t++;
 				k++; 
 			}
 		j = 0;
 		i++;
 	}
-	result[k] = '\0';
+}
+
+char *ft_strjoin(int size, char **strs, char *sep)
+{	
+	char *result;
+	
+	if (size == 0)
+		{
+			result = (char *)malloc(sizeof(char));
+			*result = '\0';
+			return result;
+		}
+	result = (char *)malloc((ft_total_lenght(size,strs)) * sizeof(char)
+			+ (ft_strlen(sep) * (size - 1)) * sizeof(char));	
+	if (result == NULL)
+		return 0;
+	
+	main_function(size, strs, sep, result);
 	return result;
 }
 
-int main(void)
+/*int main(void)
 {
-	char *separator = "--->";
+	char *separator = "---------->";
 	char *matrice[] = {"Norminette", "ti", "odio"};
 	char *array = ft_strjoin(3, matrice,separator);
 	
 	printf("%s",array);	
 
 	return 0;
-}
+}*/
